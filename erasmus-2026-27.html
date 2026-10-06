@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erasmus+ | Freedom & Responsibilities Experience</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #060407;
+      color: #0f172a;
+      overflow-x: hidden;
+    }
+
+    .font-inter { font-family: 'Inter', sans-serif; }
+    .font-instrument { font-family: 'Instrument Serif', serif; }
+    .font-dancing { font-family: 'Dancing Script', cursive; }
+
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Fluid Typography Variables for Large Displays */
+    :root {
+      --base-text: clamp(1.1rem, 0.9vw + 0.85rem, 1.9rem);
+      --hero-title: clamp(3.2rem, 5.2vw, 9.5rem);
+      --section-title: clamp(2.4rem, 4.6vw, 6rem);
+      --card-title: clamp(1.8rem, 2.2vw, 3.4rem);
+      --card-body: clamp(1.1rem, 1.15vw, 1.75rem);
+      --pillar-title: clamp(1.2rem, 1.3vw, 2rem);
+    }
+
+    body { font-size: var(--base-text); }
+    h2 { font-size: var(--section-title); }
+    h3 { font-size: var(--card-title); }
+    h5 { font-size: var(--pillar-title); }
+    p { font-size: var(--card-body); line-height: 1.65; }
+
+    /* Glassmorphism Styling */
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .card-glass-light {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.15), 0 0 20px rgba(255, 255, 255, 0.9);
+      padding: clamp(1.5rem, 2.2vw, 3.2rem);
+    }
+
+    .card-glass-blue {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(186, 230, 253, 0.8);
+      box-shadow: 0 20px 45px -10px rgba(2, 132, 199, 0.12);
+      padding: clamp(1.5rem, 2vw, 2.8rem);
+    }
+
+    .text-glow {
+      text-shadow: 0 0 40px rgba(255, 255, 255, 0.45), 0 0 80px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Pop-in animation keyframes */
+    @keyframes letterPopIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(30px) rotate(-8deg);
+        filter: blur(10px);
+      }
+      70% {
+        opacity: 0.95;
+        transform: scale(1.12) translateY(-4px) rotate(2deg);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(0deg);
+        filter: blur(0px);
+      }
+    }
+
+    .pop-letter {
+      display: inline-block;
+      animation: letterPopIn 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+      will-change: transform, opacity, filter;
+    }
+
+    #animated-heading {
+      display: inline-block;
+      text-align: center;
+      letter-spacing: -0.01em;
+      word-spacing: 0.1em;
+      line-height: 1.05;
+      font-size: var(--hero-title);
+      max-width: min(92vw, 1900px);
+    }
+
+    .heading-line {
+      display: block;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .heading-line + .heading-line {
+      margin-top: 0.15em;
+    }
+
+    /* Standardized Section Headings */
+    #section-heading-principles,
+    #section-heading-digital,
+    #section-heading-consequences,
+    #section-heading-casestudies,
+    #section-heading-quotes {
+      font-size: clamp(2.4rem, 4.6vw, 6rem);
+      line-height: 1.03;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Large Screen & Display Adjustments */
+    @media (min-width: 1400px) {
+      .max-w-3xl { max-width: 1350px; }
+      .max-w-4xl { max-width: 1600px; }
+      .max-w-6xl { max-width: 2000px; }
+      .px-6 { padding-left: 6rem; padding-right: 6rem; }
+      .py-12 { padding-top: 5rem; padding-bottom: 5rem; }
+    }
+
+    @media (min-width: 1800px) {
+      .max-w-3xl { max-width: 1600px; }
+      .max-w-4xl { max-width: 1950px; }
+      .max-w-6xl { max-width: 2400px; }
+      .px-6 { padding-left: 9rem; padding-right: 9rem; }
+    }
+  </style>
+</head>
+<body class="w-full bg-[#060407] min-h-screen text-slate-900 font-inter selection:bg-sky-500 selection:text-white">
+
+  <!-- ================= SECTION 1: HERO (WITH VIDEO BACKGROUND) ================= -->
+  <section class="relative w-full h-screen overflow-hidden flex flex-col items-center justify-between py-10 px-6">
+    
+    <!-- Background Video -->
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0 filter brightness-90 contrast-105"
+    >
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260613_180732_a54afbf6-b30d-470e-861f-669871f09f67.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80 pointer-events-none z-0"></div>
+
+    <header class="relative z-10 flex flex-col items-center justify-center pt-2">
+      <div class="bg-black/40 backdrop-blur-md px-8 py-3.5 rounded-full border border-white/20 shadow-2xl">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/8/87/Erasmus%2B_Logo.svg"
+          alt="Erasmus+ Logo"
+          onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';"
+          class="h-10 md:h-14 lg:h-16 w-auto filter drop-shadow-[0_0_15px_rgba(255,255,255,0.85)]"
+        />
+        <span id="logo-fallback" class="hidden font-inter text-white font-black text-2xl md:text-3xl tracking-widest uppercase text-glow">
+          Erasmus+
+        </span>
+      </div>
+    </header>
+
+    <main class="relative z-10 flex flex-col items-center justify-center max-w-6xl text-center my-auto px-2">
+      <h1 id="animated-heading" class="font-instrument text-white leading-[1.02] tracking-tight text-center text-glow select-none">
+        <!-- JS populates staggered letters -->
+      </h1>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 lg:gap-14 mt-12 lg:mt-16 w-full max-w-4xl">
+        
+        <div class="flex flex-col items-center p-5 md:p-6 rounded-3xl liquid-glass hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="p-3.5 lg:p-4 rounded-2xl bg-white/10 text-sky-200 mb-3.5 shadow-lg border border-white/20 group-hover:scale-110 transition-transform">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 stroke-sky-200 fill-none stroke-[2]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h5 class="font-inter text-white font-semibold tracking-wide">Active Citizenship</h5>
+        </div>
+
+        <div class="flex flex-col items-center p-5 md:p-6 rounded-3xl liquid-glass hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="p-3.5 lg:p-4 rounded-2xl bg-white/10 text-sky-200 mb-3.5 shadow-lg border border-white/20 group-hover:scale-110 transition-transform">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 stroke-sky-200 fill-none stroke-[2]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 6l9-4 9 4v6c0 5.55-3.84 10.74-9 12-5.16-1.26-9-5.45-9-12V6z" />
+            </svg>
+          </div>
+          <h5 class="font-inter text-white font-semibold tracking-wide">Rights and Duties</h5>
+        </div>
+
+        <div class="flex flex-col items-center p-5 md:p-6 rounded-3xl liquid-glass hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="p-3.5 lg:p-4 rounded-2xl bg-white/10 text-sky-200 mb-3.5 shadow-lg border border-white/20 group-hover:scale-110 transition-transform">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 stroke-sky-200 fill-none stroke-[2]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+          </div>
+          <h5 class="font-inter text-white font-semibold tracking-wide">Environmental Care</h5>
+        </div>
+
+      </div>
+    </main>
+
+    <div class="pb-2"></div>
+  </section>
+
+  <!-- ================= SECTION 2: PRINCIPLES ================= -->
+  <section class="relative w-full min-h-screen bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 flex flex-col items-center justify-between py-12 px-6 md:px-12 overflow-hidden">
+    
+    <div class="absolute top-1/4 left-1/4 w-[550px] h-[550px] bg-sky-400/20 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-[160px] pointer-events-none"></div>
+
+    <header class="relative z-10 text-center max-w-5xl mb-8 lg:mb-12">
+      <h1 id="section-heading-principles" class="font-instrument text-slate-900 font-normal tracking-tight leading-tight">
+        Freedom Requires Responsibility
+      </h1>
+    </header>
+
+    <main class="relative z-10 w-full max-w-[96vw] xl:max-w-[2400px] my-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 lg:gap-24 xl:gap-28 items-center px-4 md:px-12 lg:px-16">
+      
+      <!-- Left Column (Corners 1 & 3) -->
+      <div class="flex flex-col gap-10 lg:gap-16 justify-between h-full md:-ml-4 lg:-ml-8">
+        
+        <div class="card-glass-light rounded-3xl transition-all duration-300 hover:shadow-2xl hover:border-sky-400/80 hover:-translate-y-1 group">
+          <div class="flex items-center gap-3.5 mb-3">
+            <div class="p-3 rounded-2xl bg-sky-500/10 text-sky-600 group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7 lg:w-9 lg:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-sky-950 font-inter tracking-tight">1) Respect Diversity</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-inter font-normal">
+            We respect diversity by actively listening without judgment and treating people from every culture and background with dignity.
+          </p>
+        </div>
+
+        <div class="card-glass-light rounded-3xl transition-all duration-300 hover:shadow-2xl hover:border-sky-400/80 hover:-translate-y-1 group">
+          <div class="flex items-center gap-3.5 mb-3">
+            <div class="p-3 rounded-2xl bg-sky-500/10 text-sky-600 group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7 lg:w-9 lg:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-sky-950 font-inter tracking-tight">3) Think Critically</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-inter font-normal">
+            In a digital world full of misinformation, our duty is to check facts before sharing and question headlines rather than believing everything blindly.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Center Vector Concept Illustration -->
+      <div class="flex flex-col items-center justify-center p-4 my-4 md:my-0">
+        <div class="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px] flex items-center justify-center">
+          
+          <div class="absolute inset-0 rounded-full border-2 border-dashed border-sky-400/50"></div>
+          <div class="absolute inset-6 rounded-full border border-sky-400/30"></div>
+          
+          <svg viewBox="0 0 200 200" class="w-full h-full filter drop-shadow-[0_20px_35px_rgba(14,165,233,0.3)]">
+            <defs>
+              <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0284c7" />
+                <stop offset="50%" stop-color="#0369a1" />
+                <stop offset="100%" stop-color="#1e3a8a" />
+              </linearGradient>
+              <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8" />
+                <stop offset="100%" stop-color="#0284c7" />
+              </linearGradient>
+            </defs>
+
+            <circle cx="100" cy="100" r="48" fill="url(#blueGradient)" opacity="0.95" />
+            <ellipse cx="100" cy="100" rx="48" ry="19" fill="none" stroke="#bae6fd" stroke-width="1.8" opacity="0.65" />
+            <ellipse cx="100" cy="100" rx="19" ry="48" fill="none" stroke="#bae6fd" stroke-width="1.8" opacity="0.65" />
+            <line x1="52" y1="100" x2="148" y2="100" stroke="#bae6fd" stroke-width="1.8" opacity="0.65" />
+            <line x1="100" y1="52" x2="100" y2="148" stroke="#bae6fd" stroke-width="1.8" opacity="0.65" />
+
+            <g transform="translate(100, 26)">
+              <circle cx="0" cy="0" r="11" fill="url(#cyanGlow)" />
+              <circle cx="0" cy="-3.5" r="4" fill="#ffffff" />
+              <path d="M-6,6 Q0,0 6,6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+            </g>
+
+            <g transform="translate(174, 100)">
+              <circle cx="0" cy="0" r="11" fill="url(#cyanGlow)" />
+              <circle cx="0" cy="-3.5" r="4" fill="#ffffff" />
+              <path d="M-6,6 Q0,0 6,6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+            </g>
+
+            <g transform="translate(100, 174)">
+              <circle cx="0" cy="0" r="11" fill="url(#cyanGlow)" />
+              <circle cx="0" cy="-3.5" r="4" fill="#ffffff" />
+              <path d="M-6,6 Q0,0 6,6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+            </g>
+
+            <g transform="translate(26, 100)">
+              <circle cx="0" cy="0" r="11" fill="url(#cyanGlow)" />
+              <circle cx="0" cy="-3.5" r="4" fill="#ffffff" />
+              <path d="M-6,6 Q0,0 6,6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+            </g>
+
+            <path d="M100,37 L100,52" stroke="#0284c7" stroke-width="2.2" stroke-dasharray="3,3" />
+            <path d="M163,100 L148,100" stroke="#0284c7" stroke-width="2.2" stroke-dasharray="3,3" />
+            <path d="M100,163 L100,152" stroke="#0284c7" stroke-width="2.2" stroke-dasharray="3,3" />
+            <path d="M37,100 L52,100" stroke="#0284c7" stroke-width="2.2" stroke-dasharray="3,3" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column (Corners 2 & 4) -->
+      <div class="flex flex-col gap-10 lg:gap-16 justify-between h-full md:-mr-4 lg:-mr-8">
+        
+        <div class="card-glass-light rounded-3xl transition-all duration-300 hover:shadow-2xl hover:border-sky-400/80 hover:-translate-y-1 group">
+          <div class="flex items-center gap-3.5 mb-3">
+            <div class="p-3 rounded-2xl bg-sky-500/10 text-sky-600 group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7 lg:w-9 lg:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-sky-950 font-inter tracking-tight">2) Uphold Democracy</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-inter font-normal">
+            Democracy only works when we participate—whether that means voting, engaging in peaceful debate, or standing up for fair laws.
+          </p>
+        </div>
+
+        <div class="card-glass-light rounded-3xl transition-all duration-300 hover:shadow-2xl hover:border-sky-400/80 hover:-translate-y-1 group">
+          <div class="flex items-center gap-3.5 mb-3">
+            <div class="p-3 rounded-2xl bg-sky-500/10 text-sky-600 group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7 lg:w-9 lg:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a2.5 2.5 0 002.5-2.5V7.865M12 21a9 9 0 100-18 9 9 0 000 18z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-sky-950 font-inter tracking-tight">4) Protect Nature</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-inter font-normal">
+            Taking care of the planet starts with daily green choices—like reducing waste and supporting local climate actions to preserve nature for the future.
+          </p>
+        </div>
+
+      </div>
+
+    </main>
+
+  </section>
+
+  <!-- ================= SECTION 3: DIGITAL CITIZENSHIP ================= -->
+  <section class="relative w-full min-h-screen bg-[#e0f2fe] text-slate-900 flex flex-col items-center justify-between py-12 px-4 md:px-8 lg:px-16 overflow-hidden">
+    
+    <!-- Background Vectors -->
+    <div class="absolute -top-10 -left-10 w-[500px] h-[500px] lg:w-[650px] lg:h-[650px] pointer-events-none opacity-20 text-sky-600">
+      <svg viewBox="0 0 200 200" class="w-full h-full fill-none stroke-current stroke-[1]">
+        <circle cx="100" cy="100" r="90" stroke-dasharray="4,4" />
+        <circle cx="100" cy="100" r="65" />
+        <circle cx="100" cy="100" r="40" stroke-dasharray="2,2" />
+        <line x1="10" y1="100" x2="190" y2="100" />
+        <line x1="100" y1="10" x2="100" y2="190" />
+        <line x1="36" y1="36" x2="164" y2="164" />
+        <line x1="164" y1="36" x2="36" y2="164" />
+        <circle cx="100" cy="35" r="4" fill="currentColor" />
+        <circle cx="165" cy="100" r="4" fill="currentColor" />
+        <circle cx="100" cy="165" r="4" fill="currentColor" />
+        <circle cx="35" cy="100" r="4" fill="currentColor" />
+      </svg>
+    </div>
+
+    <div class="absolute -bottom-10 -right-10 w-[480px] h-[480px] lg:w-[620px] lg:h-[620px] pointer-events-none opacity-20 text-sky-600">
+      <svg viewBox="0 0 200 200" class="w-full h-full fill-none stroke-current stroke-[1]">
+        <path d="M100 20 L160 50 V100 C160 140 100 180 100 180 C100 180 40 140 40 100 V50 Z" />
+        <path d="M100 35 L145 60 V100 C145 130 100 160 100 160 C100 160 55 130 55 100 V60 Z" stroke-dasharray="3,3" />
+        <circle cx="100" cy="95" r="15" />
+        <path d="M100 110 V125" stroke-width="2" />
+      </svg>
+    </div>
+
+    <header class="relative z-10 text-center max-w-5xl mb-8 lg:mb-12">
+      <h1 id="section-heading-digital" class="font-instrument text-sky-900 font-normal tracking-tight leading-tight">
+        Digital Citizenship & Online Responsibility
+      </h1>
+    </header>
+
+    <main class="relative z-10 w-full max-w-[96vw] xl:max-w-[2400px] my-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 lg:gap-20 xl:gap-24 px-4 md:px-12 lg:px-20">
+      
+      <!-- Point 1 -->
+      <div class="flex flex-col gap-3 md:-ml-4 lg:-ml-8">
+        <h3 class="font-bold text-sky-950 font-inter tracking-tight">
+          Be a Mindful Digital Citizen:
+        </h3>
+        <ul class="space-y-3 text-slate-700 leading-relaxed font-inter font-normal">
+          <li class="flex items-start gap-3">
+            <span class="text-sky-600 font-bold">•</span>
+            <span>Practice digital empathy—treat people online with the same respect, kindness, and decency you would face-to-face.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-sky-600 font-bold">•</span>
+            <span>Stand up against cyberbullying, hate speech, and online harassment instead of being a silent bystander.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Point 2 -->
+      <div class="flex flex-col gap-3 md:-mr-4 lg:-mr-8">
+        <h3 class="font-bold text-sky-950 font-inter tracking-tight">
+          Fight Misinformation & Fake News:
+        </h3>
+        <ul class="space-y-3 text-slate-700 leading-relaxed font-inter font-normal">
+          <li class="flex items-start gap-3">
+            <span class="text-sky-600 font-bold">•</span>
+            <span>Pause before sharing: verify facts and check reliable sources before hitting "share" or "retweet."</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-sky-600 font-bold">•</span>
+            <span>Understand how algorithms work to avoid getting trapped in online echo chambers that feed you biased information.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Point 3 -->
+      <div class="flex flex-col gap-3 md:-ml-4 lg:-ml-8">
+        <h3 class="font-bold text-sky-950 font-inter tracking-tight">
+          Protect Privacy & Data Rights:
+        </h3>
+        <ul class="space-y-3 text-slate-700 leading-relaxed font-inter font-normal">
+          <li class="flex items-start gap-3">
+            <span class="text-sky-600 font-bold">•</span>
+            <span>Respect other people’s privacy—never share photos, personal details, or private messages without explicit consent.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-sky-600 font-bold">•</span>
+            <span>Take control of your own digital footprint by keeping security settings updated and protecting your online identity.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Point 4 -->
+      <div class="flex flex-col gap-3 md:-mr-4 lg:-mr-8">
+        <h3 class="font-bold text-sky-950 font-inter tracking-tight">
+          Promote Constructive Online Dialogue:
+        </h3>
+        <ul class="space-y-3 text-slate-700 leading-relaxed font-inter font-normal">
+          <li class="flex items-start gap-3">
+            <span class="text-sky-600 font-bold">•</span>
+            <span>Use social media as a tool to build community, raise awareness about global issues, and foster positive change rather than division.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-sky-600 font-bold">•</span>
+            <span>Listen to differing opinions in comment sections with an open mind and debate ideas respectfully.</span>
+          </li>
+        </ul>
+      </div>
+
+    </main>
+
+  </section>
+
+  <!-- ================= SECTION 4: ACTIONS HAVE CONSEQUENCES ================= -->
+  <section class="relative w-full min-h-screen bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#cbd5e1] text-slate-900 flex flex-col items-center justify-between py-12 px-6 md:px-12 overflow-hidden">
+    
+    <div class="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-sky-300/25 rounded-full blur-[130px] pointer-events-none"></div>
+
+    <header class="relative z-10 text-center max-w-5xl mb-8 lg:mb-12">
+      <h1 id="section-heading-consequences" class="font-instrument text-slate-900 font-normal tracking-tight leading-tight">
+        Actions Have Consequences
+      </h1>
+    </header>
+
+    <main class="relative z-10 w-full max-w-[96vw] xl:max-w-[2400px] my-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center px-4 md:px-12 lg:px-16">
+      
+      <!-- Left Column: Ripple Visual & Real Photo Integration -->
+      <div class="lg:col-span-5 flex flex-col gap-6 md:-ml-4 lg:-ml-8">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-sky-300/60 group">
+          <img 
+            src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1200&auto=format&fit=crop" 
+            alt="Water Ripple Metaphor" 
+            class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white">
+            <span class="text-sky-300 text-sm font-semibold tracking-widest uppercase">Visual Metaphor</span>
+            <h3 class="font-instrument text-2xl lg:text-3xl font-normal mt-1">The Ripple Effect</h3>
+          </div>
+        </div>
+
+        <div class="card-glass-light rounded-3xl">
+          <div class="flex items-center gap-3 mb-2 text-sky-700">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <h3 class="font-bold text-sky-950 font-inter tracking-tight">Every Choice Echoes</h3>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-inter font-normal">
+            A single choice—whether posting online, casting a vote, speaking up against injustice, or picking up litter—creates cascading waves across society.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Cards Breakdown -->
+      <div class="lg:col-span-7 flex flex-col gap-6 md:-mr-4 lg:-mr-8">
+        
+        <div class="card-glass-light rounded-3xl transition-all duration-300 hover:shadow-2xl hover:border-sky-400 group">
+          <div class="flex items-start gap-4">
+            <div class="p-3.5 rounded-2xl bg-sky-500/10 text-sky-600 group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300 shrink-0">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-sky-950 font-inter tracking-tight mb-1.5">Bridging Personal Freedom & Civic Duty</h3>
+              <p class="text-slate-700 leading-relaxed font-inter font-normal">
+                Individual rights do not exist in a vacuum. True autonomy flourishes only when balanced with an active awareness of how our behavior shapes the lives of those around us.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-glass-light rounded-3xl transition-all duration-300 hover:shadow-2xl hover:border-sky-400 group">
+          <div class="flex items-start gap-4">
+            <div class="p-3.5 rounded-2xl bg-sky-500/10 text-sky-600 group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300 shrink-0">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-sky-950 font-inter tracking-tight mb-1.5">Key Takeaway</h3>
+              <p class="text-slate-700 leading-relaxed font-inter font-normal">
+                <strong>Freedom gives us options; responsibility means accepting ownership of the outcome.</strong> Every action contributes directly to the strength and health of our shared European community.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </section>
+
+  <!-- ================= SECTION 5: HISTORICAL CASE STUDIES (TEXT ENLARGED) ================= -->
+  <section class="relative w-full min-h-screen bg-[#e0f2fe] text-slate-900 flex flex-col items-center justify-between py-12 px-4 md:px-8 lg:px-16 overflow-hidden">
+    
+    <div class="absolute -top-12 -right-12 w-[550px] h-[550px] pointer-events-none opacity-15 text-sky-700">
+      <svg viewBox="0 0 200 200" class="w-full h-full fill-none stroke-current stroke-[1]">
+        <circle cx="100" cy="100" r="85" />
+        <path d="M100 15 L100 185 M15 100 L185 100" />
+      </svg>
+    </div>
+
+    <header class="relative z-10 text-center max-w-5xl mb-8 lg:mb-12">
+      <h1 id="section-heading-casestudies" class="font-instrument text-sky-900 font-normal tracking-tight leading-tight">
+        Historical & Real-World Case Studies
+      </h1>
+    </header>
+
+    <main class="relative z-10 w-full max-w-[96vw] xl:max-w-[2400px] my-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 px-4 md:px-8">
+      
+      <!-- Case 1: Freedom Riders -->
+      <div class="card-glass-blue rounded-3xl flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 group">
+        <div>
+          <div class="relative h-48 rounded-2xl overflow-hidden mb-5 shadow-md">
+            <img 
+              src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=800&auto=format&fit=crop" 
+              alt="Upholding Democracy" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-sky-900/20"></div>
+            <span class="absolute top-3 left-3 bg-sky-600/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">1961</span>
+          </div>
+          <h3 class="font-bold text-sky-950 font-inter tracking-tight mb-2 text-2xl lg:text-3xl">Upholding Democracy</h3>
+          <h5 class="text-sky-700 font-bold mb-3 text-lg lg:text-xl">The Freedom Riders</h5>
+          <p class="text-slate-800 text-base lg:text-lg leading-relaxed font-inter font-medium">
+            Demonstrates that democracy requires active, courage-driven participation to uphold equal civil rights and enforce foundational laws.
+          </p>
+        </div>
+      </div>
+
+      <!-- Case 2: UDHR -->
+      <div class="card-glass-blue rounded-3xl flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 group">
+        <div>
+          <div class="relative h-48 rounded-2xl overflow-hidden mb-5 shadow-md">
+            <img 
+              src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800&auto=format&fit=crop" 
+              alt="Declaration of Human Rights" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-sky-900/20"></div>
+            <span class="absolute top-3 left-3 bg-sky-600/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">1948</span>
+          </div>
+          <h3 class="font-bold text-sky-950 font-inter tracking-tight mb-2 text-2xl lg:text-3xl">Respecting Human Rights</h3>
+          <h5 class="text-sky-700 font-bold mb-3 text-lg lg:text-xl">Universal Declaration of Human Rights</h5>
+          <p class="text-slate-800 text-base lg:text-lg leading-relaxed font-inter font-medium">
+            Formed after WWII to establish global human dignity across cultures, laying down the universal principles of modern equality.
+          </p>
+        </div>
+      </div>
+
+      <!-- Case 3: Dreyfus Affair -->
+      <div class="card-glass-blue rounded-3xl flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 group">
+        <div>
+          <div class="relative h-48 rounded-2xl overflow-hidden mb-5 shadow-md">
+            <img 
+              src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop" 
+              alt="Critical Thinking" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-sky-900/20"></div>
+            <span class="absolute top-3 left-3 bg-sky-600/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">1894</span>
+          </div>
+          <h3 class="font-bold text-sky-950 font-inter tracking-tight mb-2 text-2xl lg:text-3xl">Critical Thinking</h3>
+          <h5 class="text-sky-700 font-bold mb-3 text-lg lg:text-xl">The Dreyfus Affair</h5>
+          <p class="text-slate-800 text-base lg:text-lg leading-relaxed font-inter font-medium">
+            Exposes the dangerous real-world impact of fake news, state propaganda, and social prejudice when citizens fail to question biased media.
+          </p>
+        </div>
+      </div>
+
+      <!-- Case 4: Montreal Protocol -->
+      <div class="card-glass-blue rounded-3xl flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 group">
+        <div>
+          <div class="relative h-48 rounded-2xl overflow-hidden mb-5 shadow-md">
+            <img 
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop" 
+              alt="Environmental Action" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-sky-900/20"></div>
+            <span class="absolute top-3 left-3 bg-sky-600/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">1987</span>
+          </div>
+          <h3 class="font-bold text-sky-950 font-inter tracking-tight mb-2 text-2xl lg:text-3xl">Environmental Action</h3>
+          <h5 class="text-sky-700 font-bold mb-3 text-lg lg:text-xl">The Montreal Protocol</h5>
+          <p class="text-slate-800 text-base lg:text-lg leading-relaxed font-inter font-medium">
+            Highlights global environmental cooperation in reversing the ozone layer hole, proving that shared responsibility yields tangible results.
+          </p>
+        </div>
+      </div>
+
+    </main>
+
+  </section>
+
+  <!-- ================= SECTION 6: PILLARS & QUOTES ================= -->
+  <section class="relative w-full min-h-screen bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] text-slate-900 flex flex-col items-center justify-between py-12 px-6 md:px-12 overflow-hidden">
+    
+    <div class="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-sky-400/15 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <header class="relative z-10 text-center max-w-5xl mb-8 lg:mb-12">
+      <h1 id="section-heading-quotes" class="font-instrument text-slate-900 font-normal tracking-tight leading-tight">
+        Words That Frame Our Pillars
+      </h1>
+    </header>
+
+    <main class="relative z-10 w-full max-w-[96vw] xl:max-w-[2400px] my-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 px-4 md:px-12 lg:px-16">
+      
+      <!-- Quote 1: Rights & Freedom -->
+      <div class="card-glass-light rounded-3xl relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-sky-400/80 hover:-translate-y-1 group flex flex-col justify-between">
+        <span class="font-instrument text-8xl text-sky-200/60 absolute top-2 left-4 pointer-events-none leading-none select-none">“</span>
+        <div class="relative z-10 pt-4">
+          <span class="text-sky-600 font-bold text-sm tracking-widest uppercase mb-2 block">On Rights & Freedom</span>
+          <p class="font-instrument text-slate-800 text-2xl lg:text-3xl italic leading-snug mb-6">
+            "To be free is not merely to cast off one's chains, but to live in a way that respects and enhances the freedom of others."
+          </p>
+        </div>
+        <div class="relative z-10 flex items-center gap-3 border-t border-slate-200/80 pt-4 mt-2">
+          <div class="w-10 h-10 rounded-full bg-sky-500/10 text-sky-600 font-bold flex items-center justify-center shrink-0">NM</div>
+          <div>
+            <h5 class="font-bold text-sky-950 font-inter text-base">Nelson Mandela</h5>
+            <p class="text-xs text-slate-500">Anti-Apartheid Leader & Nobel Peace Laureate</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote 2: Democracy -->
+      <div class="card-glass-light rounded-3xl relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-sky-400/80 hover:-translate-y-1 group flex flex-col justify-between">
+        <span class="font-instrument text-8xl text-sky-200/60 absolute top-2 left-4 pointer-events-none leading-none select-none">“</span>
+        <div class="relative z-10 pt-4">
+          <span class="text-sky-600 font-bold text-sm tracking-widest uppercase mb-2 block">On Democracy</span>
+          <p class="font-instrument text-slate-800 text-2xl lg:text-3xl italic leading-snug mb-6">
+            "Democracy cannot succeed unless those who express their choice are prepared to choose wisely."
+          </p>
+        </div>
+        <div class="relative z-10 flex items-center gap-3 border-t border-slate-200/80 pt-4 mt-2">
+          <div class="w-10 h-10 rounded-full bg-sky-500/10 text-sky-600 font-bold flex items-center justify-center shrink-0">FDR</div>
+          <div>
+            <h5 class="font-bold text-sky-950 font-inter text-base">Franklin D. Roosevelt</h5>
+            <p class="text-xs text-slate-500">32nd U.S. President</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote 3: Critical Evaluation -->
+      <div class="card-glass-light rounded-3xl relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-sky-400/80 hover:-translate-y-1 group flex flex-col justify-between">
+        <span class="font-instrument text-8xl text-sky-200/60 absolute top-2 left-4 pointer-events-none leading-none select-none">“</span>
+        <div class="relative z-10 pt-4">
+          <span class="text-sky-600 font-bold text-sm tracking-widest uppercase mb-2 block">On Critical Evaluation</span>
+          <p class="font-instrument text-slate-800 text-2xl lg:text-3xl italic leading-snug mb-6">
+            "It is the mark of an educated mind to be able to entertain a thought without accepting it."
+          </p>
+        </div>
+        <div class="relative z-10 flex items-center gap-3 border-t border-slate-200/80 pt-4 mt-2">
+          <div class="w-10 h-10 rounded-full bg-sky-500/10 text-sky-600 font-bold flex items-center justify-center shrink-0">A</div>
+          <div>
+            <h5 class="font-bold text-sky-950 font-inter text-base">Aristotle</h5>
+            <p class="text-xs text-slate-500">Classical Greek Philosopher</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote 4: Responsibility -->
+      <div class="card-glass-light rounded-3xl relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-sky-400/80 hover:-translate-y-1 group flex flex-col justify-between">
+        <span class="font-instrument text-8xl text-sky-200/60 absolute top-2 left-4 pointer-events-none leading-none select-none">“</span>
+        <div class="relative z-10 pt-4">
+          <span class="text-sky-600 font-bold text-sm tracking-widest uppercase mb-2 block">On Responsibility</span>
+          <p class="font-instrument text-slate-800 text-2xl lg:text-3xl italic leading-snug mb-6">
+            "The price of greatness is responsibility."
+          </p>
+        </div>
+        <div class="relative z-10 flex items-center gap-3 border-t border-slate-200/80 pt-4 mt-2">
+          <div class="w-10 h-10 rounded-full bg-sky-500/10 text-sky-600 font-bold flex items-center justify-center shrink-0">WC</div>
+          <div>
+            <h5 class="font-bold text-sky-950 font-inter text-base">Winston Churchill</h5>
+            <p class="text-xs text-slate-500">Former Prime Minister of the United Kingdom</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </section>
+
+  <!-- JavaScript for Hero Section Animated Heading -->
+  <script>
+    window.onload = function() {
+      const heading = document.getElementById('animated-heading');
+      if (!heading) return;
+      const text = "Our Responsibilities in a Democratic Europe";
+      heading.innerHTML = '';
+
+      const words = text.split(' ');
+      const lengths = words.map(w => w.length + 1);
+      const total = lengths.reduce((a,b) => a+b, 0);
+      let acc = 0;
+      let splitIndex = 0;
+      for (let i = 0; i < lengths.length; i++) {
+        acc += lengths[i];
+        if (acc >= total / 2) { splitIndex = i; break; }
+      }
+
+      const line1 = words.slice(0, splitIndex+1).join(' ');
+      const line2 = words.slice(splitIndex+1).join(' ');
+
+      const createLine = (lineText, lineOffset) => {
+        const lineEl = document.createElement('div');
+        lineEl.className = 'heading-line';
+        lineText.split('').forEach((char, idx) => {
+          const span = document.createElement('span');
+          span.className = 'pop-letter';
+          span.style.animationDelay = ((lineOffset + idx) * 30 + 120) + 'ms';
+          span.style.marginRight = char === ' ' ? '0.18em' : '0';
+          span.style.display = 'inline-block';
+          span.style.verticalAlign = 'middle';
+          span.textContent = char === ' ' ? '\u00A0' : char;
+          lineEl.appendChild(span);
+        });
+        return lineEl;
+      };
+
+      heading.appendChild(createLine(line1, 0));
+      if (line2 && line2.length > 0) heading.appendChild(createLine(line2, line1.length));
+    };
+  </script>
+</body>
+</html>
